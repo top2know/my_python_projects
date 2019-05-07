@@ -1,0 +1,868 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%matplotlib inline\n",
+    "import math\n",
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 1. Python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 1** (0.5 points)<br/> \n",
+    "Enter numbers `a`,  `d` и `N`. Find sum of the first `N` members of arithmetic progression with the first member `a` and difference `d`, without using formula for the sum."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a:1\n",
+      "d:1\n",
+      "N:10\n",
+      "55\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = int(input('a:'))\n",
+    "d = int(input('d:'))\n",
+    "N = int(input('N:'))\n",
+    "sum = 0\n",
+    "for i in range(N):\n",
+    "    sum += a\n",
+    "    a += d\n",
+    "print(sum)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 2** (0.5 points) <br/> \n",
+    "Enter a number `N`. Find sum of the first `N` memebers of harmonic series."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N:2\n",
+      "1.5\n"
+     ]
+    }
+   ],
+   "source": [
+    "N = int(input('N:'))\n",
+    "sum = 0\n",
+    "for i in range(1, N + 1):\n",
+    "    sum += 1./i\n",
+    "    \n",
+    "print(sum)    "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 3** (0.5 points) <br/> \n",
+    "Enter an integer number `N`. Check if it is a prime number."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N:1000000007\n",
+      "N is prime\n"
+     ]
+    }
+   ],
+   "source": [
+    "def is_prime(N):\n",
+    "    result = True\n",
+    "    for i in range(2, round(math.sqrt(N)) + 1):\n",
+    "        if N % i == 0:\n",
+    "            result = False\n",
+    "            break\n",
+    "    return result        \n",
+    "    \n",
+    "N = int(input('N:'))\n",
+    "\n",
+    "result = is_prime(N)\n",
+    "if result:\n",
+    "    print('N is prime')\n",
+    "else:\n",
+    "    print('N is complex')\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 4** (0.5 points) <br/> \n",
+    "Enter the first `N` prime numbers."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N:10\n",
+      "2\n",
+      "3\n",
+      "5\n",
+      "7\n",
+      "11\n",
+      "13\n",
+      "17\n",
+      "19\n",
+      "23\n",
+      "29\n"
+     ]
+    }
+   ],
+   "source": [
+    "N = int(input('N:'))\n",
+    "counter = 0\n",
+    "num = 2\n",
+    "while (counter < N):\n",
+    "    if (is_prime(num)):\n",
+    "        print(num)\n",
+    "        counter += 1\n",
+    "    num += 1    "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 5** (0.5 points) <br/> \n",
+    "There are numbers: `a`, `b`, `c`. Without using functions `min`, `max` and other functions, find the maximum number."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a: 15\n",
+      "b: 10\n",
+      "c: 5\n",
+      "Max is 15\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = int(input('a: '))\n",
+    "b = int(input('b: '))\n",
+    "c = int(input('c: '))  \n",
+    "\n",
+    "if a > b:\n",
+    "    if a > c:\n",
+    "        print('Max is', a)\n",
+    "    else:\n",
+    "        print('Max is', c)\n",
+    "elif b > c:\n",
+    "    print('Max is', b)\n",
+    "else:\n",
+    "    print('Max is', c)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 2. Numpy"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 1** (0.5 points) <br/>\n",
+    "Create two random arrays $a$ and $b$ with the same length. \n",
+    "\n",
+    "Calculate the following distances between the arrays:\n",
+    "\n",
+    "* Euclidean Distance\n",
+    "$$ d(a, b) = \\sqrt{\\sum_i (a_i - b_i)^2} $$\n",
+    "* Manhattan Distance\n",
+    "$$ d(a, b) = \\sum_i |a_i - b_i| $$\n",
+    "* Cosine Distance\n",
+    "$$ d(a, b) = 1 - \\frac{a^\\top b}{||a||_2\\cdot||b||_2}$$\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N: 10\n",
+      "[0.97083254 0.77932907 0.8108478  0.75525865 0.72867298 0.3953304\n",
+      " 0.84607828 0.03827674 0.58582176 0.15135774]\n",
+      "[0.52377631 0.75761961 0.2951803  0.96209842 0.67061776 0.97739078\n",
+      " 0.96501314 0.88883736 0.31021513 0.042617  ]\n",
+      "Euclidean: 1.294825613012642\n",
+      "Manhattan: 3.1852314070147987\n",
+      "Cosine: 0.1727428379091911\n"
+     ]
+    }
+   ],
+   "source": [
+    "N = int(input('N: '))\n",
+    "a = np.random.rand(N)\n",
+    "b = np.random.rand(N)\n",
+    "print(a)\n",
+    "print(b)\n",
+    "print('Euclidean:', np.sqrt(np.sum((a-b)**2)))\n",
+    "print('Manhattan:', np.sum(abs(a-b)))\n",
+    "print('Cosine:', 1 - np.dot(a, b)/(np.linalg.norm(a) * np.linalg.norm(b)))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 2** (0.5 points) <br/>\n",
+    "Create a random array (`np.random.rand()`) with length of 10 and with sum of its elements equals to 2."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0.17512553 0.24944542 0.12015989 0.21359958 0.26830158 0.33334018\n",
+      " 0.11779824 0.00967495 0.27437486 0.23817977]\n",
+      "2.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.random.rand(10)\n",
+    "arr = 2 * arr / arr.sum()\n",
+    "print(arr)\n",
+    "print(arr.sum())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 3** (0.5 points) <br/>\n",
+    "Create a random array (`np.random.rand()`) with length of 100. Transform the array so, that \n",
+    "* Maximum element(s) value is 1\n",
+    "* Minimum element(s) value is 0\n",
+    "* Other values are in interval 0-1 with keeping the order"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0.45193772 0.73521712 0.39551012 0.79629368 0.92036942 0.34560573\n",
+      " 0.34284092 0.75998223 0.99152762 0.65231884 0.99060939 0.11540312\n",
+      " 0.14984674 0.53894507 0.05277462 0.52638869 0.55308362 0.9850205\n",
+      " 0.19425556 0.30226028 0.5112318  0.66941219 0.00400106 0.36395099\n",
+      " 0.67661672 0.27050404 0.2018177  0.83807987 0.1364843  0.36831066\n",
+      " 0.33078401 0.69630618 0.78608624 0.48052513 0.42035499 0.03718886\n",
+      " 0.45368509 0.86296002 0.78312584 0.47755181 0.44279079 0.93582014\n",
+      " 0.45774813 0.21696315 0.84089196 0.10004671 0.65255703 0.15403554\n",
+      " 0.39851923 0.68271634 0.47149586 0.13088161 0.99750192 0.32098993\n",
+      " 0.07445361 0.83233981 0.94280266 0.22706358 0.95545934 0.55591661\n",
+      " 0.10960151 0.80073374 0.06975431 0.30075858 0.36691484 0.87163227\n",
+      " 0.14527874 0.95076758 0.47812731 0.09099158 0.12207569 0.93997307\n",
+      " 0.46679461 0.90966749 0.41877557 0.87688131 0.13840092 0.0854742\n",
+      " 0.80175542 0.69356825 0.63443861 0.38803766 0.72743451 0.64453024\n",
+      " 0.0164675  0.65355634 0.77394987 0.11279615 0.3033828  0.45079375\n",
+      " 0.45085322 0.18529501 0.85692262 0.87691271 0.78080234 0.14205287\n",
+      " 0.51629745 0.20931699 0.99194222 0.29887157]\n",
+      "[0.45086691 0.73599942 0.39407017 0.79747552 0.92236292 0.34383933\n",
+      " 0.34105643 0.76092654 0.99398662 0.65255885 0.99306238 0.11213081\n",
+      " 0.14679975 0.53844343 0.04909262 0.52580491 0.55267447 0.98743693\n",
+      " 0.19149908 0.30021033 0.51054887 0.66976402 0.         0.3623046\n",
+      " 0.67701567 0.26824635 0.19911069 0.83953506 0.1333499  0.36669279\n",
+      " 0.32892065 0.69683394 0.78720131 0.47964133 0.41907757 0.0334049\n",
+      " 0.4526257  0.86457797 0.78422154 0.47664855 0.44166014 0.93791472\n",
+      " 0.45671532 0.21435521 0.84236555 0.09667395 0.6527986  0.15101596\n",
+      " 0.39709897 0.6831552  0.47055299 0.12771055 1.         0.3190625\n",
+      " 0.07091342 0.83375746 0.94494292 0.22452172 0.95768239 0.55552599\n",
+      " 0.10629125 0.80194463 0.06618339 0.2986988  0.36528784 0.87330695\n",
+      " 0.14220187 0.95295994 0.47722782 0.08755958 0.11884703 0.94209482\n",
+      " 0.46582099 0.91159099 0.41748782 0.87859033 0.13527905 0.08200611\n",
+      " 0.80297299 0.6940781  0.63456166 0.38654883 0.7281659  0.6447193\n",
+      " 0.01254799 0.65380444 0.77498554 0.10950679 0.30134019 0.44971545\n",
+      " 0.44977531 0.18247991 0.85850108 0.87862193 0.78188284 0.13895489\n",
+      " 0.51564766 0.20665903 0.99440393 0.29679945]\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.random.rand(100)\n",
+    "print(arr)\n",
+    "arr -= arr.min()\n",
+    "arr /= arr.max()\n",
+    "print(arr)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 4** (0.5 points) <br/>\n",
+    "Create a random array with length of 20 with integers from [0,50]. Select elements that are smaller than 5th percentile and larger than 95th percentile"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[34 26 41 35  7 49  1  5 19 33 37 18 39 31 12 44 48 31  6  2]\n",
+      "[1]\n",
+      "[49]\n",
+      "[ 1 49]\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.random.randint(0, 50+1, size=20)\n",
+    "print(arr)\n",
+    "print(arr[arr < np.percentile(arr, 5)])\n",
+    "print(arr[arr > np.percentile(arr, 95)])\n",
+    "# and that's how we can unite them - may be not the most optimal, but works..\n",
+    "print(np.concatenate([arr[arr < np.percentile(arr, 5)], arr[arr > np.percentile(arr, 95)]]))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 5** (0.5 points) <br/>\n",
+    "Create an array with shape of $5 \\times 6$ with integer from [0,50]. Print a column that contains the maximum element of the array."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[10 30 32 45 30 30]\n",
+      " [18 19 17 16 28 44]\n",
+      " [36 16 20 46 46 19]\n",
+      " [34  0 24 18 44 32]\n",
+      " [28 42  6 34 37  6]]\n",
+      "15\n",
+      "[[45]\n",
+      " [16]\n",
+      " [46]\n",
+      " [18]\n",
+      " [34]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.random.randint(0, 51, size=30).reshape(5, 6)\n",
+    "print(arr)\n",
+    "print(np.argmax(arr))\n",
+    "print(arr[:, np.argmax(arr)%arr.shape[1]].reshape(-1, 1))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 6** (0.5 points) <br/>\n",
+    "\n",
+    "Replace all missing values in the following array with mean."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0.95171704        nan 0.72130325 0.05127568        nan        nan\n",
+      " 0.89229319 0.89773869 0.80596896 0.78148369]\n",
+      "[0.95171704 0.72882579 0.72130325 0.05127568 0.72882579 0.72882579\n",
+      " 0.89229319 0.89773869 0.80596896 0.78148369]\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.random.rand(10)\n",
+    "idx = np.random.randint(0, 10, 4)\n",
+    "arr[idx] = np.nan\n",
+    "print(arr)\n",
+    "arr[np.where(np.isnan(arr))] = np.nanmean(arr)\n",
+    "print(arr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Linear Regression"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Download [file 1](https://www.dropbox.com/s/kg9px9v3xfysak9/tutorial_dataset.csv?dl=0) and [file 2](https://www.dropbox.com/s/f87gm612o144emx/tutorial_dataset_2.csv?dl=0) into a directory with this notebook. Using function `loadtxt` in `numpy` load data from the first file. Assign y = D[:,0] аnd X = D[:, 1:].\n",
+    "\n",
+    "\n",
+    "We will use one magic formula to find linear regression coefficients. You will prove this formula on your next lectures of the course.\n",
+    "\n",
+    "Linear regression model in matrix form looks like: $\\hat{y} = X\\hat{\\beta}$, where\n",
+    "\n",
+    "$$ \\hat{\\beta} = (X^\\top X)^{-1} X^\\top y $$\n",
+    "Model residuals are calculated as\n",
+    "$$ \\text{res} = y - \\hat{y} $$\n",
+    "\n",
+    "\n",
+    "**Task 7** (2.5 points)<br/>\n",
+    "1. Load the data\n",
+    "2. Find parameters $\\hat{\\beta}$ using the formula above\n",
+    "3. Make a plot with the model residuals on Y axis and $\\hat{y}$ on X axis"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[-1.61282102 -1.57812762 -1.54331266 ...  1.28238194  1.28417963\n",
+      "  1.28498082]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.collections.PathCollection at 0x7f5541b68438>"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "## load data\n",
+    "D = np.loadtxt('tutorial_dataset_2.csv', \n",
+    "               skiprows=1, \n",
+    "               delimiter=',')\n",
+    "\n",
+    "y = D[:,0]\n",
+    "X = D[:,1:]\n",
+    "beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)\n",
+    "res = y - X.dot(beta)\n",
+    "print(res)\n",
+    "plt.scatter(X.dot(beta), res, s=4)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 3. Pandas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Wine Quality"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Download [sample](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv) with information about wine characteristics and its quality."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>fixed acidity</th>\n",
+       "      <th>volatile acidity</th>\n",
+       "      <th>citric acid</th>\n",
+       "      <th>residual sugar</th>\n",
+       "      <th>chlorides</th>\n",
+       "      <th>free sulfur dioxide</th>\n",
+       "      <th>total sulfur dioxide</th>\n",
+       "      <th>density</th>\n",
+       "      <th>pH</th>\n",
+       "      <th>sulphates</th>\n",
+       "      <th>alcohol</th>\n",
+       "      <th>quality</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>7.4</td>\n",
+       "      <td>0.70</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>1.9</td>\n",
+       "      <td>0.076</td>\n",
+       "      <td>11.0</td>\n",
+       "      <td>34.0</td>\n",
+       "      <td>0.9978</td>\n",
+       "      <td>3.51</td>\n",
+       "      <td>0.56</td>\n",
+       "      <td>9.4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>7.8</td>\n",
+       "      <td>0.88</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>2.6</td>\n",
+       "      <td>0.098</td>\n",
+       "      <td>25.0</td>\n",
+       "      <td>67.0</td>\n",
+       "      <td>0.9968</td>\n",
+       "      <td>3.20</td>\n",
+       "      <td>0.68</td>\n",
+       "      <td>9.8</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>7.8</td>\n",
+       "      <td>0.76</td>\n",
+       "      <td>0.04</td>\n",
+       "      <td>2.3</td>\n",
+       "      <td>0.092</td>\n",
+       "      <td>15.0</td>\n",
+       "      <td>54.0</td>\n",
+       "      <td>0.9970</td>\n",
+       "      <td>3.26</td>\n",
+       "      <td>0.65</td>\n",
+       "      <td>9.8</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>11.2</td>\n",
+       "      <td>0.28</td>\n",
+       "      <td>0.56</td>\n",
+       "      <td>1.9</td>\n",
+       "      <td>0.075</td>\n",
+       "      <td>17.0</td>\n",
+       "      <td>60.0</td>\n",
+       "      <td>0.9980</td>\n",
+       "      <td>3.16</td>\n",
+       "      <td>0.58</td>\n",
+       "      <td>9.8</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>7.4</td>\n",
+       "      <td>0.70</td>\n",
+       "      <td>0.00</td>\n",
+       "      <td>1.9</td>\n",
+       "      <td>0.076</td>\n",
+       "      <td>11.0</td>\n",
+       "      <td>34.0</td>\n",
+       "      <td>0.9978</td>\n",
+       "      <td>3.51</td>\n",
+       "      <td>0.56</td>\n",
+       "      <td>9.4</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   fixed acidity  volatile acidity  citric acid  residual sugar  chlorides  \\\n",
+       "0            7.4              0.70         0.00             1.9      0.076   \n",
+       "1            7.8              0.88         0.00             2.6      0.098   \n",
+       "2            7.8              0.76         0.04             2.3      0.092   \n",
+       "3           11.2              0.28         0.56             1.9      0.075   \n",
+       "4            7.4              0.70         0.00             1.9      0.076   \n",
+       "\n",
+       "   free sulfur dioxide  total sulfur dioxide  density    pH  sulphates  \\\n",
+       "0                 11.0                  34.0   0.9978  3.51       0.56   \n",
+       "1                 25.0                  67.0   0.9968  3.20       0.68   \n",
+       "2                 15.0                  54.0   0.9970  3.26       0.65   \n",
+       "3                 17.0                  60.0   0.9980  3.16       0.58   \n",
+       "4                 11.0                  34.0   0.9978  3.51       0.56   \n",
+       "\n",
+       "   alcohol  quality  \n",
+       "0      9.4        5  \n",
+       "1      9.8        5  \n",
+       "2      9.8        5  \n",
+       "3      9.8        6  \n",
+       "4      9.4        5  "
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data = pd.read_csv('winequality-red.csv', sep=';')\n",
+    "\n",
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 1 ** (1 point) <br/>\n",
+    "* How much objects are in the sample?\n",
+    "* What features describe the objects? How much these features?\n",
+    "* What is feature a target variable?\n",
+    "* What are their ranges?\n",
+    "* Are there any missing values?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1599 objects in the sample\n",
+      "Features are: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol, quality \n",
+      "\n",
+      "Amount of features is 12\n",
+      "Target variable is quality\n",
+      "\n",
+      "fixed acidity has range from 4.6 to 15.9\n",
+      "volatile acidity has range from 0.12 to 1.58\n",
+      "citric acid has range from 0.0 to 1.0\n",
+      "residual sugar has range from 0.9 to 15.5\n",
+      "chlorides has range from 0.012 to 0.611\n",
+      "free sulfur dioxide has range from 1.0 to 72.0\n",
+      "total sulfur dioxide has range from 6.0 to 289.0\n",
+      "density has range from 0.9900700000000001 to 1.00369\n",
+      "pH has range from 2.74 to 4.01\n",
+      "sulphates has range from 0.33 to 2.0\n",
+      "alcohol has range from 8.4 to 14.9\n",
+      "quality has range from 3 to 8\n",
+      "\n",
+      "fixed acidity           1599\n",
+      "volatile acidity        1599\n",
+      "citric acid             1599\n",
+      "residual sugar          1599\n",
+      "chlorides               1599\n",
+      "free sulfur dioxide     1599\n",
+      "total sulfur dioxide    1599\n",
+      "density                 1599\n",
+      "pH                      1599\n",
+      "sulphates               1599\n",
+      "alcohol                 1599\n",
+      "quality                 1599\n",
+      "dtype: int64\n",
+      "As far as all features have the amount of not-nans equals to dataframe size, there are no missing values\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(data.shape[0], 'objects in the sample')\n",
+    "print('Features are:', \", \".join(data.columns), '\\n')\n",
+    "print('Amount of features is', len(data.columns))\n",
+    "print('Target variable is quality\\n')\n",
+    "for memb in data.columns:\n",
+    "    print(memb, 'has range from', data[memb].min(), 'to', data[memb].max())\n",
+    "print()\n",
+    "print(data.count())\n",
+    "print('As far as all features have the amount of not-nans equals to dataframe size, there are no missing values')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Task 2** (1 point)<br/>\n",
+    "What features affect the target variable the most?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Correlation between quality and quality is 1.0\n",
+      "Correlation between alcohol and quality is 0.4762\n",
+      "Correlation between volatile acidity and quality is -0.3906\n",
+      "Correlation between sulphates and quality is 0.2514\n",
+      "Correlation between citric acid and quality is 0.2264\n",
+      "Correlation between total sulfur dioxide and quality is -0.1851\n",
+      "Correlation between density and quality is -0.1749\n",
+      "Correlation between chlorides and quality is -0.1289\n",
+      "Correlation between fixed acidity and quality is 0.1241\n",
+      "Correlation between pH and quality is -0.0577\n",
+      "Correlation between free sulfur dioxide and quality is -0.0507\n",
+      "Correlation between residual sugar and quality is 0.0137\n",
+      "As we can see, alcohol, volatile acidity and sulphates have the highest correlations with quality, while volatile acidity has the highest (or lowest, counting sign) negative correlation - so we can see inverse dependency\n"
+     ]
+    }
+   ],
+   "source": [
+    "cols = sorted(data.columns, key=lambda memb: abs(data.quality.corr(data[memb])), reverse=True) \n",
+    "for memb in cols:\n",
+    "    print('Correlation between', memb, 'and quality is', np.round(data.quality.corr(data[memb]), 4))\n",
+    "# As we can see, correlation between the target itself is 1.0 - as it should be.\n",
+    "print('As we can see, alcohol, volatile acidity and sulphates have the highest correlations with quality, while volatile acidity has the highest (or lowest, counting sign) negative correlation - so we can see inverse dependency')    \n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
